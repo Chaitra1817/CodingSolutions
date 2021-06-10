@@ -21,3 +21,15 @@ Explanation: Alice chooses 1, and Bob has no more moves.
 '''
 
 
+class Solution:
+    def divisorGame(self, N: int) -> bool:
+        if N<=1:
+            return False
+        
+        if N%2 == 0:
+            return True
+        else:
+            return False
+  
+
+
