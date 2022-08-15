@@ -1,0 +1,16 @@
+class Solution:
+    def largestLocal(self, A: List[List[int]]) -> List[List[int]]:
+        N = len(A)
+        ans = [[0] * (N-2) for _ in range(N-2)]
+        for r in range(N-2):
+            for c in range(N-2):
+                max=-inf
+                for r2 in range(r,r+3):
+                    for c2 in range(c,c+3):
+                        x=A[r2][c2]
+                        if x>max:
+                            max=x
+                ans[r][c]=max
+        return ans
+                        
+                   
