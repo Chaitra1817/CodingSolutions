@@ -1,0 +1,16 @@
+class Solution:
+    def checkIncrement(self, ch) :
+        asc = ord(ch)
+        if ch == 'z':
+            return 'a'
+        else:
+            return chr(asc + 1)
+    def canMakeSubsequence(self, str1: str, str2: str) -> bool:
+        ind = 0
+        for ch in str1:
+            if ch == str2[ind] or self.checkIncrement(ch) == str2[ind]:
+                ind += 1
+            if ind == len(str2):
+                return True
+        return False
+        
