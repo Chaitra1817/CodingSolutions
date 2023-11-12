@@ -1,0 +1,45 @@
+,,,
+
+Given the root of a binary tree, collect a tree's nodes as if you were doing this:
+
+    Collect all the leaf nodes.
+    Remove all the leaf nodes.
+    Repeat until the tree is empty.
+
+
+Input: root = [4,8,5,0,1,null,6]
+Output: 5
+Explanation: 
+For the node with value 4: The average of its subtree is (4 + 8 + 5 + 0 + 1 + 6) / 6 = 24 / 6 = 4.
+For the node with value 5: The average of its subtree is (5 + 6) / 2 = 11 / 2 = 5.
+For the node with value 0: The average of its subtree is 0 / 1 = 0.
+For the node with value 1: The average of its subtree is 1 / 1 = 1.
+For the node with value 6: The average of its subtree is 6 / 1 = 6.
+,,,
+
+
+class Solution:
+    def findLeaves(self, root: TreeNode) -> List[List[int]]:
+        
+        res = []
+        
+        def helper(node):
+		    # When we read the leaf return -1 (to help start our levels at 0 - because we add 1 when returned).
+            if not node:
+                return -1
+			# find the height of the l and r subtrees.
+            left = helper(node.left)
+            right = helper(node.right)
+			# We have to take the max height given that we're pruning, eg. must maintain our root
+			# as being the max height if our tree is unbalanced (or depths aren't equal).
+            level = max(left, right) + 1
+			# If we haven't visited a level, append to the results.
+            if len(res) <= level:
+                res.append([])
+			# Append node value at its given level.
+            res[level].append(node.val),
+            return level
+              
+        helper(root)
+
+        return res
