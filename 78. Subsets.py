@@ -32,14 +32,14 @@ Constraints:
     All the numbers of nums are unique.
 
 '''
-
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         n=1<<len(nums)
+        m=len(nums)
         ans=[]
         for num in range(n):
             l=[]
-            for i in range(n-1):
+            for i in range(m):
                 if(num & 1<<i):
                     l.append(nums[i])
             ans.append(l)
