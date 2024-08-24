@@ -34,6 +34,7 @@ Constraints:
 '''
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
+     #powerset
         n=1<<len(nums)
         m=len(nums)
         ans=[]
@@ -45,3 +46,22 @@ class Solution:
             ans.append(l)
         
         return ans
+
+# APPROACH 2 Recursion
+n = len(nums)
+        ans = []
+
+        def find(idx, tmp):
+            if idx == n:
+                ans.append(tmp)  # Append the current subset
+                return
+            
+            # Include the current element
+            find(idx + 1, tmp + [nums[idx]])
+            
+            # Exclude the current element
+            find(idx + 1, tmp)
+
+        find(0, [])
+        return ans
+
