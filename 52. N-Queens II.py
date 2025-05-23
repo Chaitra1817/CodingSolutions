@@ -36,6 +36,7 @@ class Solution:
             nonlocal total
             if r==n:
                 total+=1
+                return
             
             for c in range(n):
                 if c in cols or (r+c) in diag1 or (r-c) in diag2:
