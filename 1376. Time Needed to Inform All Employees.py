@@ -46,25 +46,23 @@ Constraints:
     It is guaranteed that all the employees can be informed.
 
 '''
-
 class Solution:
     def numOfMinutes(self, n: int, headID: int, manager: List[int], informTime: List[int]) -> int:
         
         adj=defaultdict(list)
-        time=defaultdict(int)
         q=deque([])
         for i in range(n):
             adj[manager[i]].append(i)
-            time[i]=informTime[i]
             if manager[i]==-1:
-                q.append((i,time[i]))
+                q.append((i,informTime[i]))
                 
         ans=0
         while q:
             node,t=q.popleft()
             ans=max(ans,t)
             for neigh in adj[node]:
-                q.append((neigh,t+time[neigh]))
+                q.append((neigh,t+informTime[neigh]))
                 
         return ans
+
 
